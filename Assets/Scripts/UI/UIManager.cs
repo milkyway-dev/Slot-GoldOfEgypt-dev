@@ -80,6 +80,8 @@ public class UIManager : MonoBehaviour
 
     private int pageNum = 0;
 
+    [SerializeField] private AudioController audioController;
+
     private void Start()
     {
         if (Menu_Button) Menu_Button.onClick.RemoveAllListeners();
@@ -119,6 +121,7 @@ public class UIManager : MonoBehaviour
 
     private void OpenMenu()
     {
+        if (audioController) audioController.PlayButtonAudio();
         if (Menu_Object) Menu_Object.SetActive(false);
         if (Exit_Object) Exit_Object.SetActive(true);
         if (About_Object) About_Object.SetActive(true);
@@ -129,6 +132,8 @@ public class UIManager : MonoBehaviour
 
     private void CloseMenu()
     {
+        if (audioController) audioController.PlayButtonAudio();
+
         if (Menu_Object) Menu_Object.SetActive(true);
         if (Exit_Object) Exit_Object.SetActive(false);
         if (About_Object) About_Object.SetActive(false);
@@ -139,6 +144,8 @@ public class UIManager : MonoBehaviour
 
     private void OpenPopup(GameObject Popup)
     {
+        if (audioController) audioController.PlayButtonAudio();
+
         if (Popup) Popup.SetActive(true);
         if (MainPopup_Object) MainPopup_Object.SetActive(true);
         if (Popup == PaytablePopup_Object)
@@ -149,6 +156,7 @@ public class UIManager : MonoBehaviour
 
     private void ClosePopup(GameObject Popup)
     {
+        if (audioController) audioController.PlayButtonAudio();
         if (Popup) Popup.SetActive(false);
         if (MainPopup_Object) MainPopup_Object.SetActive(false);
     }
@@ -165,7 +173,9 @@ public class UIManager : MonoBehaviour
 
     private void TurnPage(bool type)
     {
-        if(type)
+        if (audioController) audioController.PlayButtonAudio();
+
+        if (type)
         {
             if(pageNum < 3)
             {

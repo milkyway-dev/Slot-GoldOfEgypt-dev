@@ -128,6 +128,10 @@ public class SlotBehaviour : MonoBehaviour
     Coroutine LineRout = null;
     //Coroutine AutoSpinRoutine = null;
 
+    [SerializeField] private AudioController audioController;
+
+    private List<Tweener> alltweens = new List<Tweener>();
+
     private void Start()
     {
 
@@ -190,11 +194,14 @@ public class SlotBehaviour : MonoBehaviour
 
     private void MaxBet()
     {
+        if (audioController) audioController.PlayButtonAudio();
         if (TotalBet_text) TotalBet_text.text = "99999";
     }
 
     private void ChangeLine(bool IncDec)
     {
+        if (audioController) audioController.PlayButtonAudio();
+
         double currentline = 1;
         try
         {
@@ -243,6 +250,8 @@ public class SlotBehaviour : MonoBehaviour
 
     private void ChangeBet(bool IncDec)
     {
+        if (audioController) audioController.PlayButtonAudio();
+
         double currentbet = 0;
         try
         {
@@ -427,6 +436,8 @@ public class SlotBehaviour : MonoBehaviour
 
     private void StartSlots()
     {
+        if (audioController) audioController.PlayWLAudio("spin");
+
         if (SlotStart_Button) SlotStart_Button.interactable = false;
         if (TempList.Count > 0) 
         {
@@ -463,61 +474,21 @@ public class SlotBehaviour : MonoBehaviour
 
     private IEnumerator TweenRoutine()
     {
-        if (numberOfSlots >= 1)
+        for (int i = 0; i < numberOfSlots; i++)
         {
-            InitializeTweening1(Slot_Transform[0]);
+            InitializeTweening(Slot_Transform[i]);
+            yield return new WaitForSeconds(0.1f);
         }
-        yield return new WaitForSeconds(0.1f);
 
-        if (numberOfSlots >= 2)
-        {
-            InitializeTweening2(Slot_Transform[1]);
-        }
-        yield return new WaitForSeconds(0.1f);
-
-        if (numberOfSlots >= 3)
-        {
-            InitializeTweening3(Slot_Transform[2]);
-        }
-        yield return new WaitForSeconds(0.1f);
-
-        if (numberOfSlots >= 4)
-        {
-            InitializeTweening4(Slot_Transform[3]);
-        }
-        yield return new WaitForSeconds(0.1f);
-
-        if (numberOfSlots >= 5)
-        {
-            InitializeTweening5(Slot_Transform[4]);
-        }
         SocketManager.AccumulateResult();
         yield return new WaitForSeconds(0.5f);
         List<int> resultnum = SocketManager.tempresult.StopList?.Split(',')?.Select(Int32.Parse)?.ToList();
-        if (numberOfSlots >= 1)
+
+        for (int i = 0; i < numberOfSlots; i++)
         {
-            yield return StopTweening1(resultnum[0], Slot_Transform[0]);
+            yield return StopTweening(resultnum[i] , Slot_Transform[i], i);
         }
-        yield return new WaitForSeconds(0.5f);
-        if (numberOfSlots >= 2)
-        {
-            yield return StopTweening2(resultnum[1], Slot_Transform[1]);
-        }
-        yield return new WaitForSeconds(0.5f);
-        if (numberOfSlots >= 3)
-        {
-            yield return StopTweening3(resultnum[2], Slot_Transform[2]);
-        }
-        yield return new WaitForSeconds(0.5f);
-        if (numberOfSlots >= 4)
-        {
-            yield return StopTweening4(resultnum[3], Slot_Transform[3]);
-        }
-        yield return new WaitForSeconds(0.5f);
-        if (numberOfSlots >= 5)
-        {
-            yield return StopTweening5(resultnum[4], Slot_Transform[4]);
-        }
+
         yield return new WaitForSeconds(0.3f);
         GenerateMatrix(SocketManager.tempresult.StopList);
         CheckPayoutLineBackend(SocketManager.tempresult.resultLine, SocketManager.tempresult.x_animResult, SocketManager.tempresult.y_animResult);
@@ -574,39 +545,50 @@ public class SlotBehaviour : MonoBehaviour
         List<int> x_anim = null;
         List<int> y_anim = null;
 
-        for (int i = 0; i < LineId.Count; i++)
+        if (LineId.Count > 0)
         {
-            x_points = x_string[LineId[i]]?.Split(',')?.Select(Int32.Parse)?.ToList();
-            y_points = y_string[LineId[i]]?.Split(',')?.Select(Int32.Parse)?.ToList();
-            PayCalculator.GeneratePayoutLinesBackend(x_points, y_points, x_points.Count);
+            if (audioController) audioController.PlayWLAudio("win");
+
+            for (int i = 0; i < LineId.Count; i++)
+            {
+                x_points = x_string[LineId[i]]?.Split(',')?.Select(Int32.Parse)?.ToList();
+                y_points = y_string[LineId[i]]?.Split(',')?.Select(Int32.Parse)?.ToList();
+                PayCalculator.GeneratePayoutLinesBackend(x_points, y_points, x_points.Count);
+            }
+
+            for (int i = 0; i < x_AnimString.Count; i++)
+            {
+                x_anim = x_AnimString[i]?.Split(',')?.Select(Int32.Parse)?.ToList();
+                y_anim = y_AnimString[i]?.Split(',')?.Select(Int32.Parse)?.ToList();
+
+                for (int k = 0; k < x_anim.Count; k++)
+                {
+                    StartGameAnimation(Tempimages[x_anim[k]].slotImages[y_anim[k]].gameObject);
+                }
+            }
+
+            if (x_AnimString.Count > 0)
+            {
+                if (FireRout != null)
+                {
+                    StopCoroutine(FireRout);
+                    FireRout = null;
+                }
+                FireRout = StartCoroutine(FireRoutine());
+                if (LineRout != null)
+                {
+                    StopCoroutine(LineRout);
+                    LineRout = null;
+                }
+                LineRout = StartCoroutine(ManageAnimCtrl());
+            }
+
+        }
+        else {
+            if (audioController) audioController.PlayWLAudio("lose");
+
         }
 
-        for (int i = 0; i < x_AnimString.Count; i++)
-        {
-            x_anim = x_AnimString[i]?.Split(',')?.Select(Int32.Parse)?.ToList();
-            y_anim = y_AnimString[i]?.Split(',')?.Select(Int32.Parse)?.ToList();
-
-            for (int k = 0; k < x_anim.Count; k++)
-            {
-                StartGameAnimation(Tempimages[x_anim[k]].slotImages[y_anim[k]].gameObject);
-            }
-        }
-
-        if(x_AnimString.Count > 0)
-        {
-            if(FireRout != null)
-            {
-                StopCoroutine(FireRout);
-                FireRout = null;
-            }
-            FireRout = StartCoroutine(FireRoutine());
-            if (LineRout != null)
-            {
-                StopCoroutine(LineRout);
-                LineRout = null;
-            }
-            LineRout = StartCoroutine(ManageAnimCtrl());
-        }
     }
 
     private IEnumerator FireRoutine()
@@ -633,85 +615,33 @@ public class SlotBehaviour : MonoBehaviour
     }
 
     #region TweeningCode
-    private void InitializeTweening1(Transform slotTransform)
+    private void InitializeTweening(Transform slotTransform)
     {
         slotTransform.localPosition = new Vector2(slotTransform.localPosition.x, 0);
-        tweener1 = slotTransform.DOLocalMoveY(-tweenHeight, 0.2f).SetLoops(-1, LoopType.Restart).SetDelay(0);
-        tweener1.Play();
-    }
-    private void InitializeTweening2(Transform slotTransform)
-    {
-        slotTransform.localPosition = new Vector2(slotTransform.localPosition.x, 0);
-        tweener2 = slotTransform.DOLocalMoveY(-tweenHeight, 0.2f).SetLoops(-1, LoopType.Restart).SetDelay(0);
-        tweener2.Play();
-    }
-    private void InitializeTweening3(Transform slotTransform)
-    {
-        slotTransform.localPosition = new Vector2(slotTransform.localPosition.x, 0);
-        tweener3 = slotTransform.DOLocalMoveY(-tweenHeight, 0.2f).SetLoops(-1, LoopType.Restart).SetDelay(0);
-        tweener3.Play();
-    }
-    private void InitializeTweening4(Transform slotTransform)
-    {
-        slotTransform.localPosition = new Vector2(slotTransform.localPosition.x, 0);
-        tweener4 = slotTransform.DOLocalMoveY(-tweenHeight, 0.2f).SetLoops(-1, LoopType.Restart).SetDelay(0);
-        tweener4.Play();
-    }
-    private void InitializeTweening5(Transform slotTransform)
-    {
-        slotTransform.localPosition = new Vector2(slotTransform.localPosition.x, 0);
-        tweener5 = slotTransform.DOLocalMoveY(-tweenHeight, 0.2f).SetLoops(-1, LoopType.Restart).SetDelay(0);
-        tweener5.Play();
+        Tweener tweener = slotTransform.DOLocalMoveY(-tweenHeight, 0.2f).SetLoops(-1, LoopType.Restart).SetDelay(0);
+        tweener.Play();
+        alltweens.Add(tweener);
     }
 
-    private IEnumerator StopTweening1(int reqpos, Transform slotTransform)
+
+
+    private IEnumerator StopTweening(int reqpos, Transform slotTransform, int index)
     {
-        tweener1.Pause();
+        alltweens[index].Pause();
         int tweenpos = (reqpos * IconSizeFactor) - IconSizeFactor;
-        tweener1 = slotTransform.DOLocalMoveY(-tweenpos , 0.2f);
+        alltweens[index] = slotTransform.DOLocalMoveY(-tweenpos + 100, 0.5f).SetEase(Ease.OutElastic);
         yield return new WaitForSeconds(0.2f);
-        tweener1 = slotTransform.DOLocalMoveY(-tweenpos + 100, 0.2f);
     }
-    private IEnumerator StopTweening2(int reqpos, Transform slotTransform)
-    {
-        tweener2.Pause();
-        int tweenpos = (reqpos * IconSizeFactor) - IconSizeFactor;
-        tweener2 = slotTransform.DOLocalMoveY(-tweenpos, 0.2f);
-        yield return new WaitForSeconds(0.2f);
-        tweener2 = slotTransform.DOLocalMoveY(-tweenpos + 100, 0.2f);
-    }
-    private IEnumerator StopTweening3(int reqpos, Transform slotTransform)
-    {
-        tweener3.Pause();
-        int tweenpos = (reqpos * IconSizeFactor) - IconSizeFactor;
-        tweener3 = slotTransform.DOLocalMoveY(-tweenpos, 0.2f);
-        yield return new WaitForSeconds(0.2f);
-        tweener3 = slotTransform.DOLocalMoveY(-tweenpos + 100, 0.2f);
-    }
-    private IEnumerator StopTweening4(int reqpos, Transform slotTransform)
-    {
-        tweener4.Pause();
-        int tweenpos = (reqpos * IconSizeFactor) - IconSizeFactor;
-        tweener4 = slotTransform.DOLocalMoveY(-tweenpos, 0.2f);
-        yield return new WaitForSeconds(0.2f);
-        tweener4 = slotTransform.DOLocalMoveY(-tweenpos + 100, 0.2f);
-    }
-    private IEnumerator StopTweening5(int reqpos, Transform slotTransform)
-    {
-        tweener5.Pause();
-        int tweenpos = (reqpos * IconSizeFactor) - IconSizeFactor;
-        tweener5 = slotTransform.DOLocalMoveY(-tweenpos, 0.2f);
-        yield return new WaitForSeconds(0.2f);
-        tweener5 = slotTransform.DOLocalMoveY(-tweenpos + 100, 0.2f);
-    }
+
 
     private void KillAllTweens()
     {
-        tweener1.Kill();
-        tweener2.Kill();
-        tweener3.Kill();
-        tweener4.Kill();
-        tweener5.Kill();
+        for (int i = 0; i < numberOfSlots; i++)
+        {
+            alltweens[i].Kill();
+        }
+        alltweens.Clear();
+
     }
     #endregion
 
