@@ -77,10 +77,20 @@ public class UIManager : MonoBehaviour
     private GameObject SettingsPopup_Object;
     [SerializeField]
     private Button SettingsExit_Button;
+    [SerializeField] private Button SoundButton;
+    [SerializeField] private Button MusicButton;
+    [SerializeField] private GameObject SoundOn;
+    [SerializeField] private GameObject SoundOff;
+    [SerializeField] private GameObject MusicOn;
+    [SerializeField] private GameObject MusicOff;
 
     private int pageNum = 0;
 
+    private bool isSoundOff=false;
+    private bool isMusicOff=false;
+
     [SerializeField] private AudioController audioController;
+
 
     private void Start()
     {
@@ -117,6 +127,19 @@ public class UIManager : MonoBehaviour
 
         if (Previous_Button) Previous_Button.onClick.RemoveAllListeners();
         if (Previous_Button) Previous_Button.onClick.AddListener(delegate { TurnPage(true); });
+
+        if (SoundButton) SoundButton.onClick.RemoveAllListeners();
+        if (SoundButton) SoundButton.onClick.AddListener(ToggleSound);
+
+        if (MusicButton) MusicButton.onClick.RemoveAllListeners();
+        if (MusicButton) MusicButton.onClick.AddListener(ToggleMusic);
+
+        if (SoundOn) SoundOn.SetActive(true);
+        if (SoundOff) SoundOff.SetActive(false);
+        if (MusicOn) MusicOn.SetActive(true);
+        if (MusicOn) MusicOff.SetActive(false);
+
+        
     }
 
     private void OpenMenu()
@@ -164,7 +187,7 @@ public class UIManager : MonoBehaviour
     private void ResetPages()
     {
         pageNum = 0;
-        foreach(GameObject pages in Pages)
+        foreach (GameObject pages in Pages)
         {
             pages.SetActive(false);
         }
@@ -177,7 +200,7 @@ public class UIManager : MonoBehaviour
 
         if (type)
         {
-            if(pageNum < 3)
+            if (pageNum < 3)
             {
                 if (Pages[pageNum]) Pages[pageNum].SetActive(false);
                 pageNum++;
@@ -205,5 +228,43 @@ public class UIManager : MonoBehaviour
                 if (Pages[pageNum]) Pages[pageNum].SetActive(true);
             }
         }
+    }
+
+    void ToggleMusic()
+    {
+        isMusicOff = !isMusicOff;
+        audioController.ToggleMute(isMusicOff,"bg");
+
+        if (isMusicOff)
+        {
+            MusicOff.SetActive(true);
+            MusicOn.SetActive(false);
+        }
+        else
+        {
+
+            MusicOff.SetActive(false);
+            MusicOn.SetActive(true);
+        }
+
+    }
+
+    void ToggleSound() {
+        isSoundOff = !isSoundOff;
+
+        audioController.ToggleMute(isSoundOff, "wl");
+        audioController.ToggleMute(isSoundOff, "button");
+
+        if (isSoundOff)
+        {
+            SoundOff.SetActive(true);
+            SoundOn.SetActive(false);
+        }
+        else {
+
+            SoundOff.SetActive(false);
+            SoundOn.SetActive(true);
+        }
+
     }
 }
