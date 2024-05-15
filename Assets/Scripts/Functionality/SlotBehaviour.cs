@@ -55,33 +55,33 @@ public class SlotBehaviour : MonoBehaviour
 
     [Header("Animated Sprites")]
     [SerializeField]
-    private Sprite[] A_Sprite;
-    [SerializeField]
-    private Sprite[] Wild2_Sprite;
-    [SerializeField]
-    private Sprite[] Ankh_Sprite;
-    [SerializeField]
-    private Sprite[] Eye_Sprite;
-    [SerializeField]
-    private Sprite[] FreeSpin_Sprite;
-    [SerializeField]
-    private Sprite[] J_Sprite;
-    [SerializeField]
-    private Sprite[] JackPot_Sprite;
-    [SerializeField]
-    private Sprite[] K_Sprite;
-    [SerializeField]
-    private Sprite[] Q_Sprite;
-    [SerializeField]
-    private Sprite[] Scatter_Sprite;
-    [SerializeField]
-    private Sprite[] Lotus_Sprite;
+    private Sprite[] Wick_Sprite;
     [SerializeField]
     private Sprite[] Shen_Sprite;
     [SerializeField]
-    private Sprite[] Wick_Sprite;
+    private Sprite[] Eye_Sprite;
+    [SerializeField]
+    private Sprite[] Ankh_Sprite;
+    [SerializeField]
+    private Sprite[] Lotus_Sprite;
+    [SerializeField]
+    private Sprite[] A_Sprite;
+    [SerializeField]
+    private Sprite[] K_Sprite;
+    [SerializeField]
+    private Sprite[] J_Sprite;
+    [SerializeField]
+    private Sprite[] Q_Sprite;
     [SerializeField]
     private Sprite[] Ten_Sprite;
+    [SerializeField]
+    private Sprite[] Wild2_Sprite;
+    [SerializeField]
+    private Sprite[] Scatter_Sprite;
+    [SerializeField]
+    private Sprite[] Jackpot_Sprite;
+    [SerializeField]
+    private Sprite[] FreeSpin_Sprite;
     [SerializeField]
     private Sprite[] Wild1_Sprite;
 
@@ -423,93 +423,93 @@ public class SlotBehaviour : MonoBehaviour
         switch(val)
         {
             case 0:
-                for (int i = 0; i < Ten_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(Ten_Sprite[i]);
-                }
-                break;
-            case 1:
-                for (int i = 0; i < A_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(A_Sprite[i]);
-                }
-                break;
-            case 2:
-                for (int i = 0; i < Ankh_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(Ankh_Sprite[i]);
-                }
-                break;
-            case 3:
-                for (int i = 0; i < Eye_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(Eye_Sprite[i]);
-                }
-                break;
-            case 4:
-                for (int i = 0; i < FreeSpin_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(FreeSpin_Sprite[i]);
-                }
-                break;
-            case 5:
-                for (int i = 0; i < J_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(J_Sprite[i]);
-                }
-                break;
-            case 6:
-                for (int i = 0; i < JackPot_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(JackPot_Sprite[i]);
-                }
-                break;
-            case 7:
-                for (int i = 0; i < K_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(K_Sprite[i]);
-                }
-                break;
-            case 8:
-                for (int i = 0; i < Lotus_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(Lotus_Sprite[i]);
-                }
-                break;
-            case 9:
-                for (int i = 0; i < Q_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(Q_Sprite[i]);
-                }
-                break;
-            case 10:
-                for (int i = 0; i < Scatter_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(Scatter_Sprite[i]);
-                }
-                break;
-            case 11:
-                for (int i = 0; i < Shen_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(Shen_Sprite[i]);
-                }
-                break;
-            case 12:
                 for (int i = 0; i < Wick_Sprite.Length; i++)
                 {
                     animScript.textureArray.Add(Wick_Sprite[i]);
                 }
                 break;
-            case 13:
-                for (int i = 0; i < Wild1_Sprite.Length; i++)
+            case 1:
+                for (int i = 0; i < Shen_Sprite.Length; i++)
                 {
-                    animScript.textureArray.Add(Wild1_Sprite[i]);
+                    animScript.textureArray.Add(Shen_Sprite[i]);
                 }
                 break;
-            case 14:
+            case 2:
+                for (int i = 0; i < Eye_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(Eye_Sprite[i]);
+                }
+                break;
+            case 3:
+                for (int i = 0; i < Ankh_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(Ankh_Sprite[i]);
+                }
+                break;
+            case 4:
+                for (int i = 0; i < Lotus_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(Lotus_Sprite[i]);
+                }
+                break;
+            case 5:
+                for (int i = 0; i < A_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(A_Sprite[i]);
+                }
+                break;
+            case 6:
+                for (int i = 0; i < K_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(K_Sprite[i]);
+                }
+                break;
+            case 7:
+                for (int i = 0; i < J_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(J_Sprite[i]);
+                }
+                break;
+            case 8:
+                for (int i = 0; i < Q_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(Q_Sprite[i]);
+                }
+                break;
+            case 9:
+                for (int i = 0; i < Ten_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(Ten_Sprite[i]);
+                }
+                break;
+            case 10:
                 for (int i = 0; i < Wild2_Sprite.Length; i++)
                 {
                     animScript.textureArray.Add(Wild2_Sprite[i]);
+                }
+                break;
+            case 11:
+                for (int i = 0; i < Scatter_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(Scatter_Sprite[i]);
+                }
+                break;
+            case 12:
+                for (int i = 0; i < Jackpot_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(Jackpot_Sprite[i]);
+                }
+                break;
+            case 13:
+                for (int i = 0; i < FreeSpin_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(FreeSpin_Sprite[i]);
+                }
+                break;
+            case 14:
+                for (int i = 0; i < Wild1_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(Wild1_Sprite[i]);
                 }
                 break;
         }
