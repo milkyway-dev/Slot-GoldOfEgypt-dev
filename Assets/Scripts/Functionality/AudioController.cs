@@ -14,7 +14,28 @@ public class AudioController : MonoBehaviour
     private void Start()
     {
         if (bg_adudio) bg_adudio.Play();
-        audioPlayer_button.clip = clips[clips.Length-1];
+    }
+
+    internal void PlayWLAudio(string type)
+    {
+
+        int index = 0;
+        switch (type)
+        {
+            case "spin":
+                index = 0;
+                break;
+            case "win":
+                index = UnityEngine.Random.Range(1, 2);
+                break;
+            case "lose":
+                index = 3;
+                break;
+        }
+        StopWLAaudio();
+        audioPlayer_wl.loop = true;
+        audioPlayer_wl.Play();
+
     }
 
     private void OnApplicationFocus(bool focus)
@@ -35,33 +56,10 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    internal void PlayWLAudio(string type)
+    internal void PlayButtonAudio()
     {
-        
-        int index = 0;
-        switch (type)
-        {
-            case "spin":
-                index = 0;
-                break;
-            case "win":
-                index = UnityEngine.Random.Range(1, 2);
-                break;
-            case "lose":
-                index = 3;
-                break;
-        }
-        StopWLAaudio();
-        audioPlayer_wl.clip = clips[index];
-        audioPlayer_wl.loop = true;
-        audioPlayer_wl.Play();
-
-    }
-
-    internal void PlayButtonAudio() {
         StopButtonAudio();
         audioPlayer_button.Play();
-        Invoke("StopButtonAudio", audioPlayer_button.clip.length);
 
     }
 
@@ -71,18 +69,21 @@ public class AudioController : MonoBehaviour
         audioPlayer_wl.loop = false;
     }
 
-    internal void StopButtonAudio() {
+    internal void StopButtonAudio()
+    {
 
         audioPlayer_button.Stop();
 
     }
 
-    internal void StopBgAudio() {
+    internal void StopBgAudio()
+    {
         bg_adudio.Stop();
 
     }
 
-    internal void ToggleMute(bool toggle, string type="all") {
+    internal void ToggleMute(bool toggle, string type = "all")
+    {
 
         switch (type)
         {
@@ -90,10 +91,10 @@ public class AudioController : MonoBehaviour
                 bg_adudio.mute = toggle;
                 break;
             case "button":
-                audioPlayer_button.mute=toggle;
+                audioPlayer_button.mute = toggle;
                 break;
             case "wl":
-                audioPlayer_wl.mute=toggle;
+                audioPlayer_wl.mute = toggle;
                 break;
             case "all":
                 audioPlayer_wl.mute = toggle;
