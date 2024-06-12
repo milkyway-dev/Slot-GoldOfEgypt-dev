@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638537850090000000
+      ticks: 638537908260000000
     m_Hash: 1452401936
   m_LockFileStatus:
     m_FilePath: /Users/underpinmacgamedev/Slot-GoldOfEgypt/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638537851010000000
+      ticks: 638537908260000000
     m_Hash: 1137361151
 m_EmbeddedPackageManifests:
   m_ManifestsStatus:
@@ -23,7 +23,7 @@ m_EmbeddedPackageManifests:
       m_ContentTrackingEnabled: 1
       m_ModificationDate:
         serializedVersion: 2
-        ticks: 638537850090000000
+        ticks: 638537908280000000
       m_Hash: 3969017766
     /Users/underpinmacgamedev/Slot-GoldOfEgypt/Packages/com.tivadar.best.http/package.json:
       m_FilePath: /Users/underpinmacgamedev/Slot-GoldOfEgypt/Packages/com.tivadar.best.http/package.json
@@ -31,7 +31,7 @@ m_EmbeddedPackageManifests:
       m_ContentTrackingEnabled: 1
       m_ModificationDate:
         serializedVersion: 2
-        ticks: 638537850090000000
+        ticks: 638537908260000000
       m_Hash: 884637557
     /Users/underpinmacgamedev/Slot-GoldOfEgypt/Packages/com.tivadar.best.socketio/package.json:
       m_FilePath: /Users/underpinmacgamedev/Slot-GoldOfEgypt/Packages/com.tivadar.best.socketio/package.json
@@ -39,7 +39,7 @@ m_EmbeddedPackageManifests:
       m_ContentTrackingEnabled: 1
       m_ModificationDate:
         serializedVersion: 2
-        ticks: 638537850090000000
+        ticks: 638537908280000000
       m_Hash: 4187713290
 m_LocalPackages:
   m_LocalFileStatus: []
