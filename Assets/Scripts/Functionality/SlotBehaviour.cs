@@ -150,9 +150,9 @@ public class SlotBehaviour : MonoBehaviour
         if (SlotStart_Button) SlotStart_Button.onClick.AddListener(delegate { StartSlots(); });
 
         if (BetPlus_Button) BetPlus_Button.onClick.RemoveAllListeners();
-        if (BetPlus_Button) BetPlus_Button.onClick.AddListener(delegate { ChangeBet(true); });
+        if (BetPlus_Button) BetPlus_Button.onClick.AddListener(delegate { OnBetOne(true); });
         if (BetMinus_Button) BetMinus_Button.onClick.RemoveAllListeners();
-        if (BetMinus_Button) BetMinus_Button.onClick.AddListener(delegate { ChangeBet(false); });
+        if (BetMinus_Button) BetMinus_Button.onClick.AddListener(delegate { OnBetOne(false); });
 
         if (LinePlus_Button) LinePlus_Button.onClick.RemoveAllListeners();
         if (LinePlus_Button) LinePlus_Button.onClick.AddListener(delegate { ChangeLine(true); });
@@ -347,7 +347,23 @@ public class SlotBehaviour : MonoBehaviour
         if (Lines_text) Lines_text.text = currentline.ToString();
 
     }
+    void OnBetOne(bool IncDec)
+    {
+        if (audioController) audioController.PlayButtonAudio();
 
+        if (BetCounter < SocketManager.initialData.Bets.Count - 1)
+        {
+            BetCounter++;
+        }
+        else
+        {
+            BetCounter = 0;
+        }
+        Debug.Log("Index:" + BetCounter);
+
+        if (TotalBet_text) TotalBet_text.text = SocketManager.initialData.Bets[BetCounter].ToString();
+        //if (BetPerLine_text) BetPerLine_text.text = SocketManager.initialData.Bets[BetCounter].ToString();
+    }
     private void ChangeBet(bool IncDec)
     {
         if (audioController) audioController.PlayButtonAudio();
@@ -688,7 +704,7 @@ public class SlotBehaviour : MonoBehaviour
 
     internal void CallCloseSocket()
     {
-        SocketManager.CloseWebSocket();
+        SocketManager.CloseSocket();
     }
 
     void ToggleButtonGrp(bool toggle)
