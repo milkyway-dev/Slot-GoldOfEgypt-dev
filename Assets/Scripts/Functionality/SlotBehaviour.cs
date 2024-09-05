@@ -44,29 +44,29 @@ public class SlotBehaviour : MonoBehaviour
 
     [Header("Animated Sprites")]
     [SerializeField]
-    private Sprite[] Bonus_Sprite;
+    private Sprite[] Ten_Sprite;
+    [SerializeField]
+    private Sprite[] A_Sprite;
+    [SerializeField]
+    private Sprite[] J_Sprite;
+    [SerializeField]
+    private Sprite[] K_Sprite;
+    [SerializeField]
+    private Sprite[] Q_Sprite;
+    [SerializeField]
+    private Sprite[] Ankh_Sprite;
+    [SerializeField]
+    private Sprite[] Eye_Sprite;
+    [SerializeField]
+    private Sprite[] Lotus_Sprite;
+    [SerializeField]
+    private Sprite[] Shen_Sprite;
+    [SerializeField]
+    private Sprite[] Wick_Sprite;
     [SerializeField]
     private Sprite[] FreeSpin_Sprite;
     [SerializeField]
     private Sprite[] Jackpot_Sprite;
-    [SerializeField]
-    private Sprite[] MajorBlondeMan_Sprite;
-    [SerializeField]
-    private Sprite[] MajorBlondyGirl_Sprite;
-    [SerializeField]
-    private Sprite[] MajorDarkMan_Sprite;
-    [SerializeField]
-    private Sprite[] MajorGingerGirl_Sprite;
-    [SerializeField]
-    private Sprite[] RuneFehu_Sprite;
-    [SerializeField]
-    private Sprite[] RuneGebo_Sprite;
-    [SerializeField]
-    private Sprite[] RuneMannaz_Sprite;
-    [SerializeField]
-    private Sprite[] RuneOthala_Sprite;
-    [SerializeField]
-    private Sprite[] RuneRaidho_Sprite;
     [SerializeField]
     private Sprite[] Scatter_Sprite;
     [SerializeField]
@@ -94,12 +94,12 @@ public class SlotBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject FSBoard_Object;
     [SerializeField]
-    private TMP_Text FSnum_text;
+    private TMP_Text FSNum_text;
 
     int tweenHeight = 0;  //calculate the height at which tweening is done
 
     [SerializeField]
-    private GameObject Image_Prefab;    //icons prefab
+    private GameObject[] FireAnim_Objects;
 
     [SerializeField]
     private PayoutCalculation PayCalculator;
@@ -220,7 +220,7 @@ public class SlotBehaviour : MonoBehaviour
     {
         if (!IsFreeSpin)
         {
-            if (FSnum_text) FSnum_text.text = spins.ToString();
+            if (FSNum_text) FSNum_text.text = spins.ToString();
             if (FSBoard_Object) FSBoard_Object.SetActive(true);
             IsFreeSpin = true;
             ToggleButtonGrp(false);
@@ -243,7 +243,7 @@ public class SlotBehaviour : MonoBehaviour
             yield return tweenroutine;
             yield return new WaitForSeconds(2);
             i++;
-            if (FSnum_text) FSnum_text.text = (spinchances - i).ToString();
+            if (FSNum_text) FSNum_text.text = (spinchances - i).ToString();
         }
         if (FSBoard_Object) FSBoard_Object.SetActive(false);
         ToggleButtonGrp(true);
@@ -386,103 +386,89 @@ public class SlotBehaviour : MonoBehaviour
         animScript.textureArray.TrimExcess();
         switch (val)
         {
-            case 12:
-                for (int i = 0; i < Jackpot_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(Jackpot_Sprite[i]);
-                }
-                animScript.AnimationSpeed = 30f;
-                break;
-            case 9:
-                for (int i = 0; i < FreeSpin_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(FreeSpin_Sprite[i]);
-                }
-                animScript.AnimationSpeed = 30f;
-                break;
-            case 13:
-                for (int i = 0; i < Bonus_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(Bonus_Sprite[i]);
-                }
-                animScript.AnimationSpeed = 30f;
-                break;
-            case 5:
-                for (int i = 0; i < MajorBlondeMan_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(MajorBlondeMan_Sprite[i]);
-                }
-                animScript.AnimationSpeed = 12f;
-                break;
-            case 6:
-                for (int i = 0; i < MajorBlondyGirl_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(MajorBlondyGirl_Sprite[i]);
-                }
-                animScript.AnimationSpeed = 12f;
-                break;
-            case 7:
-                for (int i = 0; i < MajorDarkMan_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(MajorDarkMan_Sprite[i]);
-                }
-                animScript.AnimationSpeed = 12f;
-                break;
-            case 8:
-                for (int i = 0; i < MajorGingerGirl_Sprite.Length; i++)
-                {
-                    animScript.textureArray.Add(MajorGingerGirl_Sprite[i]);
-                }
-                animScript.AnimationSpeed = 12f;
-                break;
             case 0:
-                for (int i = 0; i < RuneFehu_Sprite.Length; i++)
+                for (int i = 0; i < Wick_Sprite.Length; i++)
                 {
-                    animScript.textureArray.Add(RuneFehu_Sprite[i]);
+                    animScript.textureArray.Add(Wick_Sprite[i]);
                 }
-                animScript.AnimationSpeed = 12f;
                 break;
             case 1:
-                for (int i = 0; i < RuneGebo_Sprite.Length; i++)
+                for (int i = 0; i < Shen_Sprite.Length; i++)
                 {
-                    animScript.textureArray.Add(RuneGebo_Sprite[i]);
+                    animScript.textureArray.Add(Shen_Sprite[i]);
                 }
-                animScript.AnimationSpeed = 12f;
                 break;
             case 2:
-                for (int i = 0; i < RuneMannaz_Sprite.Length; i++)
+                for (int i = 0; i < Eye_Sprite.Length; i++)
                 {
-                    animScript.textureArray.Add(RuneMannaz_Sprite[i]);
+                    animScript.textureArray.Add(Eye_Sprite[i]);
                 }
-                animScript.AnimationSpeed = 12f;
                 break;
             case 3:
-                for (int i = 0; i < RuneOthala_Sprite.Length; i++)
+                for (int i = 0; i < Ankh_Sprite.Length; i++)
                 {
-                    animScript.textureArray.Add(RuneOthala_Sprite[i]);
+                    animScript.textureArray.Add(Ankh_Sprite[i]);
                 }
-                animScript.AnimationSpeed = 12f;
                 break;
             case 4:
-                for (int i = 0; i < RuneRaidho_Sprite.Length; i++)
+                for (int i = 0; i < Lotus_Sprite.Length; i++)
                 {
-                    animScript.textureArray.Add(RuneRaidho_Sprite[i]);
+                    animScript.textureArray.Add(Lotus_Sprite[i]);
                 }
-                animScript.AnimationSpeed = 12f;
                 break;
-            case 11:
-                for (int i = 0; i < Scatter_Sprite.Length; i++)
+            case 5:
+                for (int i = 0; i < A_Sprite.Length; i++)
                 {
-                    animScript.textureArray.Add(Scatter_Sprite[i]);
+                    animScript.textureArray.Add(A_Sprite[i]);
                 }
-                animScript.AnimationSpeed = 30f;
+                break;
+            case 6:
+                for (int i = 0; i < K_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(K_Sprite[i]);
+                }
+                break;
+            case 7:
+                for (int i = 0; i < J_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(J_Sprite[i]);
+                }
+                break;
+            case 8:
+                for (int i = 0; i < Q_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(Q_Sprite[i]);
+                }
+                break;
+            case 9:
+                for (int i = 0; i < Ten_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(Ten_Sprite[i]);
+                }
                 break;
             case 10:
                 for (int i = 0; i < Wild_Sprite.Length; i++)
                 {
                     animScript.textureArray.Add(Wild_Sprite[i]);
                 }
-                animScript.AnimationSpeed = 30f;
+                break;
+            case 11:
+                for (int i = 0; i < Scatter_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(Scatter_Sprite[i]);
+                }
+                break;
+            case 12:
+                for (int i = 0; i < Jackpot_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(Jackpot_Sprite[i]);
+                }
+                break;
+            case 13:
+                for (int i = 0; i < FreeSpin_Sprite.Length; i++)
+                {
+                    animScript.textureArray.Add(FreeSpin_Sprite[i]);
+                }
                 break;
         }
     }
@@ -491,7 +477,7 @@ public class SlotBehaviour : MonoBehaviour
     //starts the spin process
     private void StartSlots(bool autoSpin = false)
     {
-        //if (audioController) audioController.PlaySpinButtonAudio();
+        if (audioController) audioController.PlaySpinButtonAudio();
 
         if (!autoSpin)
         {
@@ -725,11 +711,19 @@ public class SlotBehaviour : MonoBehaviour
         if (IsStart)
         {
             WinTween = TotalWin_text.gameObject.GetComponent<RectTransform>().DOScale(new Vector2(1.5f, 1.5f), 1f).SetLoops(-1, LoopType.Yoyo).SetDelay(0);
+            foreach(GameObject e in FireAnim_Objects)
+            {
+                e.SetActive(true);
+            }
         }
         else
         {
             WinTween.Kill();
             TotalWin_text.gameObject.GetComponent<RectTransform>().localScale = Vector3.one;
+            foreach (GameObject e in FireAnim_Objects)
+            {
+                e.SetActive(false);
+            }
         }
     }
 
