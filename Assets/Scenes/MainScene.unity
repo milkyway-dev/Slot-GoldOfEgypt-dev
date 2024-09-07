@@ -2054,7 +2054,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &227933746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2665,7 +2664,6 @@ MonoBehaviour:
   StartOnAwake: 1
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &251263207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3054,7 +3052,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &331335925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3459,7 +3456,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &357540197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4119,7 +4115,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &387697795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4942,7 +4937,7 @@ MonoBehaviour:
   uiManager: {fileID: 377874625}
   bonusdata: []
   _jsManager: {fileID: 500036493}
-  testToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDgzY2E2YTI3YmY5MDI0NDNlYjQ5NSIsInVzZXJuYW1lIjoiZWthbnNoIiwicm9sZSI6InBsYXllciIsImlhdCI6MTcyNTUwOTk4NiwiZXhwIjoxNzI2MTE0Nzg2fQ.u7mYsHlFTMMtdh_Ddgat_7tJJvFAi4NHs7288HoTtho
+  testToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDgzY2E2YTI3YmY5MDI0NDNlYjQ5NSIsInVzZXJuYW1lIjoiZWthbnNoIiwicm9sZSI6InBsYXllciIsImlhdCI6MTcyNTY4NTc4NiwiZXhwIjoxNzI2MjkwNTg2fQ.tnPbsOCmESq6lEPbEHN_zUkswAh0lE1tqHuXdsscfks
 --- !u!114 &500036493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5135,7 +5130,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &514553174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5932,7 +5926,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &605774126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7712,7 +7705,6 @@ MonoBehaviour:
   StartOnAwake: 1
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &778353714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8788,7 +8780,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &925681238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10637,7 +10628,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &1101105832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12129,7 +12119,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &1275414756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15042,7 +15031,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &1488634111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16321,7 +16309,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &1583821179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16495,7 +16482,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &1605394412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17012,7 +16998,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &1648381311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20451,7 +20436,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &1918381563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21500,7 +21484,6 @@ MonoBehaviour:
   StartOnAwake: 0
   DestroyOnCompletion: 0
   isplaying: 0
-  OriginalSprite: {fileID: 0}
 --- !u!114 &2065842609
 MonoBehaviour:
   m_ObjectHideFlags: 0
