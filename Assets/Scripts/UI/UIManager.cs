@@ -197,11 +197,11 @@ public class UIManager : MonoBehaviour
     private int PageCounter = 0;
 
 
-    private void Awake()
-    {
-        if (Loading_Object) Loading_Object.SetActive(true);
-        StartCoroutine(LoadingRoutine());
-    }
+    //private void Awake()
+    //{
+    //    if (Loading_Object) Loading_Object.SetActive(true);
+    //    StartCoroutine(LoadingRoutine());
+    //}
 
     private IEnumerator LoadingRoutine()
     {
